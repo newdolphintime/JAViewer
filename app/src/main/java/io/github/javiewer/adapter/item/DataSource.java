@@ -25,6 +25,15 @@ public class DataSource extends Linkable {
         return name;
     }
 
+//    @Override
+//    public String toString() {
+//        return "DataSource{" +
+//                "link='" + link + '\'' +
+//                ", name='" + name + '\'' +
+//                ", legacies=" + legacies +
+//                '}';
+//    }
+
     @Override
     public String toString() {
         return name;

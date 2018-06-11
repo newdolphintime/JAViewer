@@ -69,11 +69,11 @@ public abstract class RecyclerFragment<I, LM extends RecyclerView.LayoutManager>
         }
         return this.mRecyclerView.getAdapter();
     }
-
+    //获取数据的代码
     public ArrayList<I> getItems() {
         return items;
     }
-
+    //设置数据代码
     public void setItems(ArrayList<I> items) {
         int size = getItems().size();
         if (size > 0) {

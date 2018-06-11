@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ import retrofit2.Response;
 public abstract class BasicOnScrollListener<I> extends RecyclerView.OnScrollListener {
 
     private boolean loading = false;
-
+    //加载开始结果   已经加载的item个数小于第一个可见的item位置加上5 可以自我调节
     private int loadThreshold = 5;
     private int currentPage = 0;
 
@@ -120,17 +121,24 @@ public abstract class BasicOnScrollListener<I> extends RecyclerView.OnScrollList
 
     public boolean canLoadMore(RecyclerView recyclerView) {
         RecyclerView.LayoutManager mLayoutManager = getLayoutManager();
+        //当前RecyclerView的所有子项个数
         int visibleItemCount = recyclerView.getChildCount();
+        //Log.d("load-visibleItemCount",String.valueOf(visibleItemCount));
+        //当前屏幕所看到的子项个数
         int totalItemCount = mLayoutManager.getItemCount();
+        //Log.d("load-totalItemCount",String.valueOf(totalItemCount));
         int firstVisibleItem = 0;
         if (mLayoutManager instanceof StaggeredGridLayoutManager) {
+            ////屏幕中最后一个可见子项的position
             firstVisibleItem = ((StaggeredGridLayoutManager) mLayoutManager).findFirstVisibleItemPositions(null)[0];
         } else if (mLayoutManager instanceof GridLayoutManager) {
+            ////屏幕中最后一个可见子项的position
             firstVisibleItem = ((GridLayoutManager) mLayoutManager).findFirstVisibleItemPosition();
         } else if (mLayoutManager instanceof LinearLayoutManager) {
+            //屏幕中最后一个可见子项的position
             firstVisibleItem = ((LinearLayoutManager) mLayoutManager).findFirstVisibleItemPosition();
         }
-
+        //Log.d("load-firstVisibleItem",String.valueOf(firstVisibleItem));
         return (totalItemCount - visibleItemCount) <= (firstVisibleItem + this.loadThreshold);
     }
 

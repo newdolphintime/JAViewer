@@ -34,4 +34,15 @@ public class Properties {
     public String getChangelog() {
         return changelog;
     }
+
+
+    @Override
+    public String toString() {
+        return "Properties{" +
+                "latest_version='" + latest_version + '\'' +
+                ", latest_version_code=" + latest_version_code +
+                ", changelog='" + changelog + '\'' +
+                ", data_sources=" + data_sources +
+                '}';
+    }
 }

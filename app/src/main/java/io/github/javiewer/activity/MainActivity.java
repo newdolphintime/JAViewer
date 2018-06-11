@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fragmentManager;
 
     public Fragment currentFragment;
-
+    //抽屉
     @BindView(R.id.nav_view)
     public NavigationView mNavigationView;
 
